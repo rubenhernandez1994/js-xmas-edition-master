@@ -17,7 +17,7 @@ function probarValidarNombre() {
     )
   
     console.assert(
-      validarNombre('facundo') === '',
+      validarNombre('fabricio') === '',
       'Validar nombre no funcionó con un nombre válido'
     )
   }
