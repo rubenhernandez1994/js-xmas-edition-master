@@ -7,7 +7,7 @@ function validarNombre(nombre) {
      return 'Este campo debe tener menos de 50 caracteres'   
     }
  
-    if(!/^[a-z]+$/i.test(nombre)) {
+    if(!/^[a-zA-Z]+$/.test(nombre)) {
        return "El campo solo acepta letras"
     }
  
@@ -27,7 +27,7 @@ function validarNombre(nombre) {
        return 'Favor de ingresar el regalo que deseas'  
     }else if(descripcionRegalo.length >= 100){
        return  'Santa no le trae regalos a los ninos avariciosos'
-    }else if(!/^[a-z0-9]+$/i.test(descripcionRegalo)) {
+    }else if(!/^[a-zA-Z0-9]+$/.test(descripcionRegalo)) {
        return 'Este campo solo acepta letras y numeros';
     }else {
        return '';
@@ -56,17 +56,21 @@ function validarNombre(nombre) {
     if(esExito){
        $form.className = 'oculto';
        document.querySelector('#exito').className = '';
+       setTimeout( function() { window.location.href="wishlist.html"; }, 5000 );
     }
     
     event.preventDefault();
  }
  
  function manejarErrores (errores) {
-    const keys = Object.keys(errores);
-    const $errores = document.querySelector('#errores');
-    const cantidadErrores = 0;
- 
-    keys.forEach(function(key){
+   const $form = document.querySelector("#carta-a-santa"); 
+   const keys = Object.keys(errores);
+   const $errores = document.querySelector('#errores');
+   let cantidadErrores = 0;
+   
+   $errores.innerHTML = '';
+
+   keys.forEach(function(key){
        const error = errores[key];
  
        if(error){
@@ -79,9 +83,9 @@ function validarNombre(nombre) {
        }else{
           $form[key].className = ""
        }
-    });
+   }); 
     
-    return cantidadErrores;
+   return cantidadErrores;
  }
  
  const $form = document.querySelector("#carta-a-santa"); 
